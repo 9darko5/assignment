@@ -1,0 +1,11 @@
+# Build outputs
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio user and workspace files
+.vs/
+*.user
+*.suo
+
+# NuGet package cache (restored from packages.config)
+packages/
