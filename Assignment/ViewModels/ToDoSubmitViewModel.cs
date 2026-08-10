@@ -1,55 +1,57 @@
-﻿using Assignment.Commands;
+using Assignment.Commands;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Navigation;
 
 namespace Assignment.ViewModels
 {
     public class ToDoSubmitViewModel : ViewModelBase
     {
-        private string _itemName { get; set; }
-        private int _selectedPriority { get; set; }
+        private readonly Action<string, int> _submitItem;
+        private string _itemName;
+        private int _selectedPriority;
+
+        public ToDoSubmitViewModel(Action<string, int> submitItem)
+        {
+            _submitItem = submitItem;
+            SubmitCommand = new RelayCommand(SubmitItem);
+            Priorities = new List<int> { 1, 2, 3 };
+            SelectedPriority = 1;
+        }
+
         public string ItemName
         {
             get => _itemName;
             set
             {
                 _itemName = value;
-                OnPropertyChanged("ItemName");
+                OnPropertyChanged(nameof(ItemName));
             }
         }
+
         public int SelectedPriority
         {
             get => _selectedPriority;
             set
             {
                 _selectedPriority = value;
-                OnPropertyChanged("SelectedPriority");
+                OnPropertyChanged(nameof(SelectedPriority));
             }
         }
 
-        public List<int> Priorities { get; private set; }
-
-        public ICommand SubmitCommand { get; private set; }
-
-        public ToDoSubmitViewModel() 
-        {
-            Initialize();
-        }
-
-        private void Initialize()
-        {
-            SubmitCommand = new RelayCommand(SubmitItem);
-            Priorities = new List<int> { 1, 2, 3};
-        }
+        public List<int> Priorities { get; }
+        public ICommand SubmitCommand { get; }
 
         private void SubmitItem(object obj)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(ItemName))
+            {
+                return;
+            }
+
+            _submitItem(ItemName.Trim(), SelectedPriority);
+            ItemName = string.Empty;
+            SelectedPriority = 1;
         }
     }
 }
