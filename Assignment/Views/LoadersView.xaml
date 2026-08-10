@@ -24,7 +24,7 @@
             <Run Text="{Binding Threads[0].Duration}" />
             <Run Text=" s" />
             <Run Text=" (" />
-            <Run Text="{Binding Threads[0].Progress, StringFormat={}{0:F0}}" />
+            <Run Text="{Binding Threads[0].Progress, Mode=OneWay, StringFormat={}{0:F0}}" />
             <Run Text="%)" />
         </TextBlock>
         <ProgressBar Grid.Row="0" Grid.Column="1" Height="20" Maximum="100" Value="{Binding Threads[0].Progress, Mode=OneWay}" />
@@ -36,7 +36,7 @@
             <Run Text="{Binding Threads[1].Duration}" />
             <Run Text=" s" />
             <Run Text=" (" />
-            <Run Text="{Binding Threads[1].Progress, StringFormat={}{0:F0}}" />
+            <Run Text="{Binding Threads[1].Progress, Mode=OneWay, StringFormat={}{0:F0}}" />
             <Run Text="%)" />
         </TextBlock>
         <ProgressBar Grid.Row="1" Grid.Column="1" Height="20" Maximum="100" Value="{Binding Threads[1].Progress, Mode=OneWay}" />
@@ -48,7 +48,7 @@
             <Run Text="{Binding Threads[2].Duration}" />
             <Run Text=" s" />
             <Run Text=" (" />
-            <Run Text="{Binding Threads[2].Progress, StringFormat={}{0:F0}}" />
+            <Run Text="{Binding Threads[2].Progress, Mode=OneWay, StringFormat={}{0:F0}}" />
             <Run Text="%)" />
         </TextBlock>
         <ProgressBar Grid.Row="2" Grid.Column="1" Height="20" Maximum="100" Value="{Binding Threads[2].Progress, Mode=OneWay}" />
